@@ -6,6 +6,7 @@ from flask import Blueprint, current_app, flash, redirect, request, url_for
 from flask_inertia import render_inertia
 from flask_login import login_required
 from marshmallow import ValidationError
+from sqlalchemy import or_
 
 from app import db
 from app.models.account import Account
@@ -20,7 +21,17 @@ organization_routes = Blueprint("organization", __name__)
 @login_required
 def search():
     page, name_filter, trash_filter = get_search_filters()
-    query = Organization.query.filter(Organization.name.ilike(f"%{name_filter}%"))
+    query = Organization.query.filter(
+        or_(
+            Organization.name.ilike(f"%{name_filter}%"),
+            Organization.email.ilike(f"%{name_filter}%"),
+            Organization.address.ilike(f"%{name_filter}%"),
+            Organization.address.ilike(f"%{name_filter}%"),
+            Organization.city.ilike(f"%{name_filter}%"),
+            Organization.region.ilike(f"%{name_filter}%"),
+            Organization.country.ilike(f"%{name_filter}%"),
+        )
+    )
 
     if trash_filter == "only":
         query = query.filter(Organization.deleted_at != None)  # noqa: E711
