@@ -13,26 +13,27 @@ and [Vue 3](https://v3.vuejs.org/).
 Clone the repo locally:
 
 ```
-git clone https://github.com/j0ack/pingcrm-flask.git
+git clone https://github.com/rr0001/pingcrm-flask.git
 cd pingcrm-flask
 ```
 
 Install dependencies:
 
 ```
-python3 -m venv venv
-source ./venv/bin/activate
-make init
+poetry install
+poetry shell
+poe init
+poe migrate
 ```
 
 Run database seeder:
 
 ```
-make seed
+poe seed
 ```
 
 Run dev server:
 
 ```
-make dev
+poe dev
 ```
