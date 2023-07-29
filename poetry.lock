@@ -269,6 +269,20 @@ flask = ">=2.2.5"
 sqlalchemy = ">=1.4.18"
 
 [[package]]
+name = "flask-vite"
+version = "0.3.0"
+description = "Flask+Vite integration."
+optional = false
+python-versions = ">=3.9,<4.0"
+files = [
+    {file = "flask_vite-0.3.0-py3-none-any.whl", hash = "sha256:0dbb29082168c87e236b16de30bd7debe000e74fc088f12b06a8f86701474a00"},
+    {file = "flask_vite-0.3.0.tar.gz", hash = "sha256:0a59c56ff4a6046e8e311ea162c4284ce73c6404eba330075a4e5b21d8c4eaa6"},
+]
+
+[package.dependencies]
+flask = ">=2,<3"
+
+[[package]]
 name = "greenlet"
 version = "2.0.2"
 description = "Lightweight in-process concurrent programming"
@@ -695,4 +709,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ed0f486c5f4e9dbc25cf1b93ca9f0e62ecd936a39cf359ab48423bd1f5daa828"
+content-hash = "6b845d17cd3a66f6cc2fd71a9a9d7db7510b30f885fc1c538abd717e5287287b"

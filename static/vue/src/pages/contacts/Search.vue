@@ -65,7 +65,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { Link as LinkModel, Contact, SearchFilters } from '@/models'
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import mapValues from 'lodash/mapValues'
 import Icon from '@/common/Icon.vue'
 import Layout from '@/common/Layout.vue'

@@ -2,15 +2,15 @@
   <div>
     <h1 class="mb-8 text-3xl font-bold">Users</h1>
     <div class="flex items-center justify-between mb-6">
-      <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
+      <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Role:</label>
-        <select v-model="form.role" class="form-select mt-1 w-full">
+        <select v-model="form.role" class="w-full mt-1 form-select">
           <option :value="null" />
           <option value="user">User</option>
           <option value="owner">Owner</option>
         </select>
         <label class="block mt-4 text-gray-700">Trashed:</label>
-        <select v-model="form.trashed" class="form-select mt-1 w-full">
+        <select v-model="form.trashed" class="w-full mt-1 form-select">
           <option :value="null" />
           <option value="with">With Trashed</option>
           <option value="only">Only Trashed</option>
@@ -21,19 +21,19 @@
         <span class="hidden md:inline">&nbsp;User</span>
       </Link>
     </div>
-    <div class="bg-white rounded-md shadow overflow-x-auto">
+    <div class="overflow-x-auto bg-white rounded-md shadow">
       <table class="w-full whitespace-nowrap">
-        <tr class="text-left font-bold">
-          <th class="pb-4 pt-6 px-6">Name</th>
-          <th class="pb-4 pt-6 px-6">Email</th>
-          <th class="pb-4 pt-6 px-6" colspan="2">Role</th>
+        <tr class="font-bold text-left">
+          <th class="px-6 pt-6 pb-4">Name</th>
+          <th class="px-6 pt-6 pb-4">Email</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Role</th>
         </tr>
         <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="$route('users.edit', user.id)">
-              <img v-if="user.photo_path" class="block -my-2 mr-2 w-5 h-5 rounded-full" :src="user.photo_path" />
+              <img v-if="user.photo_path" class="block w-5 h-5 mr-2 -my-2 rounded-full" :src="user.photo_path" />
               {{ user.last_name }}&nbsp;{{ user.first_name }}
-              <icon v-if="user.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
+              <icon v-if="user.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 ml-2 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
@@ -62,7 +62,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import { Link as LinkModel, SearchFilters, User } from '@/models'
 import mapValues from 'lodash/mapValues'
 import Icon from '@/common/Icon.vue'

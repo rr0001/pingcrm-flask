@@ -1,5 +1,5 @@
-import { createApp, h, App } from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue3'
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
 import '@/css/app.css'
 
 type StrOrNum = string | number
@@ -17,12 +17,12 @@ const routeConfig = {
 }
 
 createInertiaApp({
-  resolve: async name => {
-    const page = await import(`./pages/${name}`)
-    return page.default
+  resolve: name => {
+    const pages = import.meta.glob('./pages/**/*.vue', { eager: true })
+    return pages[`./pages/${name}.vue`]
   },
-  setup({ el, app, props, plugin }) {
-    const vueApp = createApp({ render: () => h(app, props) })
+  setup({ el, App, props, plugin }) {
+    const vueApp = createApp({ render: () => h(App, props) })
     vueApp.use(plugin)
     vueApp.use(routeConfig)
     vueApp.mount(el)

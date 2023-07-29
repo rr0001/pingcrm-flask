@@ -61,7 +61,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { Link as LinkModel, Organization, SearchFilters } from '@/models'
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import Icon from '@/common/Icon.vue'
 import Layout from '@/common/Layout.vue'
 import Pagination from '@/common/Pagination.vue'

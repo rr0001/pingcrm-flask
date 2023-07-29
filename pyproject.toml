@@ -20,6 +20,7 @@ factory-boy = "3.2.1"
 werkzeug = "^2.3.6"
 coverage = "6.3.2"
 poethepoet = "^0.21.1"
+flask-vite = "^0.3.0"
 
 
 [build-system]
