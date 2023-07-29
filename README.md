@@ -23,7 +23,6 @@ Install dependencies:
 poetry install
 poetry shell
 poe init
-poe migrate
 ```
 
 Run database seeder:

@@ -29,7 +29,8 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poe.tasks]
-init = {shell="npm install", cwd="./static/vue"}
+init = ["init-npm", "migrate"]
+init-npm = {shell="npm install", cwd="./static/vue"}
 migrate = {shell="flask db upgrade", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
 seed = {shell="flask seed", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
 dev = {shell="npm run --prefix static/vue/ build:dev & flask run", interpreter="pwsh", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development", NODE_OPTIONS="--openssl-legacy-provider"}}
