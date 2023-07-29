@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "pingcrm-flask"
+version = "0.1.0"
+description = ""
+authors = ["Ralph R. <10516663+rr0001@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.2"
+flask-inertia = {version = "0.4", extras = ["tests"]}
+flask-sqlalchemy = "^3.0.5"
+flask-migrate = "^4.0.4"
+flask-login = "^0.6.2"
+flask-marshmallow = "0.14.0"
+marshmallow-sqlalchemy = "^0.29.0"
+factory-boy = "3.2.1"
+werkzeug = "^2.3.6"
+coverage = "6.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poe.tasks]
+init = {shell="npm install", cwd="./static/vue"}
+migrate = {shell="flask db upgrade", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
+seed = {shell="flask seed", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
+dev = {shell="npm run --prefix static/vue/ build:dev & flask run", interpreter="pwsh", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development", NODE_OPTIONS="--openssl-legacy-provider"}}
+clean = {shell="rm ./app/test.db"}
+test-python = {shell="coverage run --source app --omit=app/dev.py -m unittest discover tests && coverage report -m --fail-under=90"}
