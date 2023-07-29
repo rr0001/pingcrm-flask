@@ -28,7 +28,7 @@ def search():
         query = query.filter(Organization.deleted_at == None)  # noqa: E711
 
     query = query.order_by(Organization.id).paginate(
-        page, per_page=current_app.config["ITEMS_PER_PAGE"]
+        page=page, per_page=current_app.config["ITEMS_PER_PAGE"]
     )
     data = build_search_data(
         query,
