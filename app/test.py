@@ -5,7 +5,7 @@ import os
 SECRET_KEY = "test"
 LOGIN_DISABLED = True
 SQLALCHEMY_DATABASE_URI = (
-    f"sqlite:////{os.path.abspath(os.path.dirname(__file__))}/test_db.db"
+    f"sqlite:///{os.path.abspath(os.path.dirname(__file__))}/test_db.db"
 )
 INERTIA_TEMPLATE = "base.html"
 ITEMS_PER_PAGE = 10
