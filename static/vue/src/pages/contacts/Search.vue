@@ -2,9 +2,9 @@
   <div>
     <h1 class="mb-8 text-3xl font-bold">Contacts</h1>
     <div class="flex items-center justify-between mb-6">
-      <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
+      <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Trashed:</label>
-        <select v-model="form.trashed" class="form-select mt-1 w-full">
+        <select v-model="form.trashed" class="w-full mt-1 form-select">
           <option :value="null" />
           <option value="with">With Trashed</option>
           <option value="only">Only Trashed</option>
@@ -15,19 +15,19 @@
         <span class="hidden md:inline">&nbsp;Contact</span>
       </Link>
     </div>
-    <div class="bg-white rounded-md shadow overflow-x-auto">
+    <div class="overflow-x-auto bg-white rounded-md shadow">
       <table class="w-full whitespace-nowrap">
-        <tr class="text-left font-bold">
-          <th class="pb-4 pt-6 px-6">Name</th>
-          <th class="pb-4 pt-6 px-6">Organization</th>
-          <th class="pb-4 pt-6 px-6">City</th>
-          <th class="pb-4 pt-6 px-6" colspan="2">Phone</th>
+        <tr class="font-bold text-left">
+          <th class="px-6 pt-6 pb-4">Name</th>
+          <th class="px-6 pt-6 pb-4">Organization</th>
+          <th class="px-6 pt-6 pb-4">City</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Phone</th>
         </tr>
         <tr v-for="contact in contacts.data" :key="contact.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="$route('contacts.edit', contact.id)">
               {{ contact.name }}
-              <icon v-if="contact.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
+              <icon v-if="contact.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 ml-2 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
