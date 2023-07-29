@@ -7,7 +7,7 @@ const path = require("path");
 // https://vitejs.dev/config/
 export default ({ command }) => ({
     base: command === 'serve' ? '' : '/dist/',
-    publicDir: 'fake_dir_so_nothing_gets_copied',
+    publicDir: './public',
     build: {
         manifest: true,
         outDir: path.resolve(__dirname, '../dist'),
