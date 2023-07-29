@@ -19,6 +19,7 @@ marshmallow-sqlalchemy = "^0.29.0"
 factory-boy = "3.2.1"
 werkzeug = "^2.3.6"
 coverage = "6.3.2"
+poethepoet = "^0.21.1"
 
 
 [build-system]
