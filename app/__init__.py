@@ -98,37 +98,27 @@ def create_app(config_filename: str) -> Flask:
     app.register_blueprint(contact_routes, url_prefix="/contacts/")
     app.register_blueprint(user_routes, url_prefix="/users/")
 
-    app.template_global("vite_tags")(make_tag)
+    app.template_global("vite_tags")(vite_tags)
 
     # print(app.url_map)
 
     return app
 
 
-def make_tag(static: bool = False):
-    if static or not current_app.debug:
-        return make_static_tag()
-    else:
-        return make_debug_tag()
+def manifest():
+    import json
+    from pathlib import Path
+    
+    return json.loads(Path("static/dist/manifest.json").read_text())
 
 
-def make_static_tag():
-    js_file = glob.glob("static/dist/assets/*.js")[0].split("/")[-1]
-    css_file = glob.glob("static/dist/assets/*.css")[0].split("/")[-1]
+def vite_tags():
+    js_file = manifest()['src/main.ts']['file']
+    css_file = manifest()['src/main.ts']['css'][0]
     return dedent(
         f"""
             <!-- FLASK_VITE_HEADER -->
             <script type="module" src="/dist/{js_file}"></script>
             <link rel="stylesheet" href="/dist/{css_file}"></link>
-        """
-    ).strip()
-
-
-def make_debug_tag():
-    return dedent(
-        """
-            <!-- FLASK_VITE_HEADER -->
-            <script type="module" src="http://localhost:3000/@vite/client"></script>
-            <script type="module" src="http://localhost:3000/main.js"></script>
         """
     ).strip()
