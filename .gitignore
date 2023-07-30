@@ -1,10 +1,13 @@
 *.py[cod]
 __pycache__/
 venv/
+.env
+.env*.local
+.secrets
 
 app/media/*
-app/test.db
-app/test_db.db
+app/app.db
+app/test*.db
 
 static/dist/
 static/vue/node_modules/
