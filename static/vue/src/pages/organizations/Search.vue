@@ -29,7 +29,7 @@
             <td class="border-t">
               <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="$route('organization.edit', organization.id)">
                 {{ organization.name }}
-                <icon v-if="organization.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 ml-2 fill-gray-400" />
+                <icon v-if="organization.deleted_at" name="trash" class="shrink-0 w-3 h-3 ml-2 fill-gray-400" />
               </Link>
             </td>
             <td class="border-t">

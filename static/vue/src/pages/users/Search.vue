@@ -33,7 +33,7 @@
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="$route('users.edit', user.id)">
               <img v-if="user.photo_path" class="block w-5 h-5 mr-2 -my-2 rounded-full" :src="user.photo_path" />
               {{ user.last_name }}&nbsp;{{ user.first_name }}
-              <icon v-if="user.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 ml-2 fill-gray-400" />
+              <icon v-if="user.deleted_at" name="trash" class="shrink-0 w-3 h-3 ml-2 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
