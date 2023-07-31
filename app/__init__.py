@@ -1,7 +1,6 @@
 """Ping CRM simple app."""
 
 import os
-import glob
 from textwrap import dedent
 from collections import defaultdict
 
@@ -11,6 +10,8 @@ from flask_login import LoginManager, current_user, login_required
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+
+from settings import config
 
 ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -59,13 +60,13 @@ def auth_data():
     return data
 
 
-def create_app(config_filename: str) -> Flask:
+def create_app() -> Flask:
     app = Flask(
         __name__,
         template_folder=os.path.join(ROOT_DIR, "templates"),
         static_folder=os.path.join(ROOT_DIR, "static", "dist"),
     )
-    app.config.from_pyfile(f"{config_filename}.py")
+    app.config.from_pyfile(f"{config('APP_CONFIG', 'prod.py')}")
 
     db.init_app(app)
     migrate.init_app(
@@ -99,8 +100,6 @@ def create_app(config_filename: str) -> Flask:
     app.register_blueprint(user_routes, url_prefix="/users/")
 
     app.template_global("vite_tags")(vite_tags)
-
-    # print(app.url_map)
 
     return app
 

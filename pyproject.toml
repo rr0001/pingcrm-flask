@@ -21,6 +21,8 @@ werkzeug = "^2.3.6"
 coverage = "6.3.2"
 poethepoet = "^0.21.1"
 flask-vite = "^0.3.0"
+python-decouple = "^3.8"
+waitress = "^2.1.2"
 
 
 [build-system]
@@ -31,10 +33,10 @@ build-backend = "poetry.core.masonry.api"
 [tool.poe.tasks]
 init = ["init-npm", "migrate"]
 init-npm = {shell="npm install", cwd="./static/vue"}
-migrate = {shell="flask db upgrade", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
-seed = {shell="flask seed", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
-dev = {shell="npm run --prefix static/vue/ build -- --mode development --watch & flask db upgrade && flask run", interpreter="pwsh", env={FLASK_APP="app:create_app('dev')", FLASK_ENV="development"}}
-serve = {shell="npm run --prefix static/vue/ build && flask db upgrade && flask run", interpreter="pwsh", env={FLASK_APP="app:create_app('prod')", FLASK_ENV="production"}}
+migrate = {shell="flask db upgrade"}
+seed = {shell="flask seed"}
+dev = {shell="npm run --prefix static/vue/ build -- --mode development --watch & flask db upgrade && waitress-serve --listen=127.0.0.1:5000 --call app:create_app", interpreter="pwsh", env={APP_CONFIG="dev.py"}}
+serve = {shell="npm run --prefix static/vue/ build && flask db upgrade && waitress-serve --listen=127.0.0.1:5000 --call app:create_app", interpreter="pwsh", env={APP_CONFIG="prod.py"}}
 clean = {shell="rm ./app/test*.db"}
 test-python = {shell="coverage run --source app --omit=app/dev.py -m unittest discover tests && coverage report -m --fail-under=90"}
 build-dev = {shell="npm run --prefix static/vue/ build -- --mode development", interpreter="pwsh"}
