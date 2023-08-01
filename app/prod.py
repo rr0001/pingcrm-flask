@@ -4,8 +4,9 @@ import os
 from settings import config
 
 
-# openssl rand -hex 20
-SECRET_KEY = config('SECRET_KEY', 'PLEASEUPDATEUSINGCOMMANDABOVE')
+# openssl rand -hex 32
+# python -c 'import secrets; print(secrets.token_hex())'
+SECRET_KEY = config('SECRET_KEY', '_GENERATE__AND_ADD_TO__ENV_FILE_')
 SQLALCHEMY_DATABASE_URI = (
     f"sqlite:///{os.path.abspath(os.path.dirname(__file__))}/app.db"
 )

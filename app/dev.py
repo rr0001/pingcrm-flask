@@ -1,8 +1,12 @@
 """Ping CRM app dev config."""
 
 import os
+from app import config
 
-SECRET_KEY = "dev"
+
+# openssl rand -hex 32
+# python -c 'import secrets; print(secrets.token_hex())'
+SECRET_KEY = config("SECRET_KEY", "__GENERATE_AND_ADD_TO_ENV_FILE__")
 SQLALCHEMY_DATABASE_URI = (
     f"sqlite:///{os.path.abspath(os.path.dirname(__file__))}/test.db"
 )
