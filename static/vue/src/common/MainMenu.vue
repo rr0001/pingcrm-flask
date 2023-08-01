@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-4">
-      <Link class="flex items-center py-3 group" :href="$route('dashboard')">
+      <Link class="flex items-center py-3 group" :href="$route('dashboard.index')">
         <icon name="dashboard" class="w-4 h-4 mr-2 fill-white" />
         <div class="text-white">Dashboard</div>
       </Link>
@@ -19,7 +19,7 @@
       </Link>
     </div>
     <div class="mb-4">
-      <Link class="flex items-center py-3 group" :href="$route('dashboard')">
+      <Link class="flex items-center py-3 group" :href="$route('dashboard.index')">
         <icon name="printer" class="w-4 h-4 mr-2 fill-white" />
         <div class="text-white">Reports</div>
       </Link>

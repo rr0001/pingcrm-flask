@@ -87,7 +87,6 @@ def create_app() -> Flask:
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
 
-    app.add_url_rule("/", "dashboard", dashboard)
     app.add_url_rule("/media/<filename>/", "media", media)
 
     from app.cli import seed
@@ -96,10 +95,12 @@ def create_app() -> Flask:
 
     from app.routes.auth import auth
     from app.routes.contact import contact_routes
+    from app.routes.dashboard import dashboard_routes
     from app.routes.organization import organization_routes
     from app.routes.user import user_routes
 
     app.register_blueprint(auth)
+    app.register_blueprint(dashboard_routes)
     app.register_blueprint(organization_routes, url_prefix="/organizations/")
     app.register_blueprint(contact_routes, url_prefix="/contacts/")
     app.register_blueprint(user_routes, url_prefix="/users/")
