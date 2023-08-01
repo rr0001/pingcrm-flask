@@ -6,6 +6,7 @@
         <div class="px-10 py-12">
           <h1 class="text-3xl font-bold text-center">Welcome Back!</h1>
           <div class="w-24 mx-auto mt-6 border-b-2" />
+          <flash-messages />
           <text-input id="email" v-model="form.email" :error="form.errors.email" class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
           <text-input id="password" v-model="form.password" :error="form.errors.password" class="mt-6" label="Password" type="password" />
           <label class="flex items-center mt-6 select-none" for="remember">
@@ -28,6 +29,7 @@ import { useForm } from '@inertiajs/vue3'
 import Logo from '@/common/Logo.vue'
 import TextInput from '@/common/TextInput.vue'
 import LoadingButton from '@/common/LoadingButton.vue'
+import FlashMessages from '@/common/FlashMessages.vue'
 
 export default defineComponent({
   name: 'Login',
@@ -35,6 +37,7 @@ export default defineComponent({
     LoadingButton,
     Logo,
     TextInput,
+    FlashMessages,
   },
   data() {
     return {
