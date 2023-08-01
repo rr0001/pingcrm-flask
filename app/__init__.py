@@ -4,7 +4,7 @@ import os
 from textwrap import dedent
 from collections import defaultdict
 
-from flask import Flask, current_app, get_flashed_messages, send_from_directory
+from flask import Flask, current_app, get_flashed_messages, send_from_directory, session
 from flask_inertia import Inertia, render_inertia
 from flask_login import LoginManager, current_user, login_required
 from flask_marshmallow import Marshmallow
