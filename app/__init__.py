@@ -10,6 +10,7 @@ from flask_login import LoginManager, current_user, login_required
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_session import Session
 
 from settings import config
 
@@ -21,6 +22,7 @@ ma = Marshmallow()
 migrate = Migrate()
 inertia = Inertia()
 login_manager = LoginManager()
+session = Session()
 
 
 @login_required
@@ -74,6 +76,7 @@ def create_app() -> Flask:
         db,
         render_as_batch=app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite"),
     )
+    session.init_app(app)
     ma.init_app(app)
     inertia.init_app(app)
     inertia.share("flash", flash_messages)
