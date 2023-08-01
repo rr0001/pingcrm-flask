@@ -1,6 +1,8 @@
 """Ping CRM simple app."""
 
 import os
+import json
+from pathlib import Path
 from textwrap import dedent
 from collections import defaultdict
 
@@ -107,16 +109,10 @@ def create_app() -> Flask:
     return app
 
 
-def manifest():
-    import json
-    from pathlib import Path
-    
-    return json.loads(Path("static/dist/manifest.json").read_text())
-
-
 def vite_tags():
-    js_file = manifest()['src/main.ts']['file']
-    css_file = manifest()['src/main.ts']['css'][0]
+    manifest = json.loads(Path("static/dist/manifest.json").read_text())
+    js_file = manifest['src/main.ts']['file']
+    css_file = manifest['src/main.ts']['css'][0]
     return dedent(
         f"""
             <!-- FLASK_VITE_HEADER -->
