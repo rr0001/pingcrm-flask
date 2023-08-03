@@ -24,7 +24,6 @@ ma = Marshmallow()
 migrate = Migrate()
 inertia = Inertia()
 login_manager = LoginManager()
-session = Session()
 
 
 @login_required
@@ -71,6 +70,8 @@ def create_app() -> Flask:
         static_folder=os.path.join(ROOT_DIR, "static", "dist"),
     )
     app.config.from_pyfile(f"{config('APP_CONFIG', 'prod.py')}")
+    
+    Session(app)
 
     db.init_app(app)
     migrate.init_app(
@@ -78,7 +79,6 @@ def create_app() -> Flask:
         db,
         render_as_batch=app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite"),
     )
-    session.init_app(app)
     ma.init_app(app)
     inertia.init_app(app)
     inertia.share("flash", flash_messages)
