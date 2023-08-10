@@ -22,7 +22,7 @@
             <dropdown class="mt-1" placement="bottom-end">
               <div class="flex items-center cursor-pointer select-none group">
                 <div class="mr-1 text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 whitespace-nowrap">
-                  <span>{{ $page.props.auth.user.first_name }}</span>
+                  <span>{{ $page.props.auth.user.first_name }}</span>&nbsp;
                   <span class="hidden md:inline">{{ $page.props.auth.user.last_name }}</span>
                 </div>
                 <icon class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600" name="cheveron-down" />
