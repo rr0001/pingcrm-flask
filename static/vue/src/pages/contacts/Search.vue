@@ -27,7 +27,7 @@
           <td class="border-t">
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="$route('contacts.edit', contact.id)">
               {{ contact.name }}
-              <icon v-if="contact.deleted_at" name="trash" class="shrink-0 w-3 h-3 ml-2 fill-gray-400" />
+              <icon v-if="contact.deleted_at" name="trash" class="w-3 h-3 ml-2 shrink-0 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
@@ -71,6 +71,7 @@ import Icon from '@/common/Icon.vue'
 import Layout from '@/common/Layout.vue'
 import Pagination from '@/common/Pagination.vue'
 import SearchFilter from '@/common/SearchFilter.vue'
+import { pickBy } from 'lodash'
 
 type ContactSearch = {
   data: Contact[],
@@ -105,21 +106,10 @@ export default defineComponent({
   },
   watch: {
     form: {
-      handler(form) {
-        let url = this.$route('contacts.search')
-        let params = []
-        if (form.search) {
-          params.push(`search=${form.search}`)
-        }
-        if (form.trashed) {
-          params.push(`trashed=${form.trashed}`)
-        }
+      handler() {
+        const url = this.$route('contacts.search')
 
-        if (params) {
-          url = `${url}?${params.join('&')}`
-        }
-
-        this.$inertia.get(url)
+        this.$inertia.get(url, pickBy(this.form), { preserveState: true })
       },
       deep: true,
     },
